@@ -1,14 +1,12 @@
-// routes/silverPriceRoutes.js
 const express = require("express");
 const router = express.Router();
-const controller = require("../controllers/silverPriceController");
+const controller = require("../Controller/silverPriceController");
 
-// Admin-only
-router.post("/set", controller.setTodaySilverPrice); // manual input
-router.get("/scrape", controller.scrapeSilverPrice); // trigger website scraper
+// Admin-only route to trigger scraping
+router.get("/scrape", controller.scrapeSilverPrice);
 
-// Public
-router.get("/today", controller.getTodaySilverPrice); // latest price
-router.get("/history", controller.getSilverPriceHistory); // price history
+// Public routes
+router.get("/today", controller.getTodaySilverPrice);
+router.get("/history", controller.getSilverPriceHistory);
 
 module.exports = router;

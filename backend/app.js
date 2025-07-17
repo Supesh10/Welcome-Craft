@@ -2,8 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const connectDB = require("./src/Config/db");
+require("./src/Services/cron");
 const silverPrice = require("./src/Routes/silverPriceRoute");
-// require("./src/Middleware/cronMiddleware"); // Import cron job for fetching silver price
 const product = require("./src/Routes/productRoute");
 const category = require("./src/Routes/categoryRoute");
 // const artwork = require("./src/Routes/artwork2route");
@@ -31,6 +31,8 @@ app.use("/api", category);
 
 app.use("/api", silverPrice);
 
+// app.use("/api", silverPrice);
+
 // app.use("/api/artwork", artwork);
 
 // app.use("/uploads", express.static(__dirname + "/uploads"));
@@ -52,7 +54,3 @@ server.on("error", (err) => {
     throw err;
   }
 });
-
-
-
-// silverprice.fetchAndStoreSilverPrice(); // Initial fetch to populate silver price
